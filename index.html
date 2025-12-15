@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Madhuri K | Senior UX/UI Engineer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      background: linear-gradient(135deg, #0b1220, #0f1b2e);
+      color: #e5e7eb;
+      line-height: 1.6;
+    }
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(11, 18, 32, 0.95);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+      border-bottom: 1px solid #1e293b;
+    }
+    nav strong {
+      font-size: 18px;
+    }
+    nav a {
+      color: #cbd5e1;
+      text-decoration: none;
+      margin-left: 24px;
+      font-size: 14px;
+    }
+    nav a:hover {
+      color: #60a5fa;
+    }
+    section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 80px 60px;
+    }
+    h1 {
+      font-size: 48px;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+    h2 {
+      font-size: 30px;
+      margin-bottom: 24px;
+    }
+    p {
+      font-size: 18px;
+      color: #cbd5e1;
+      max-width: 800px;
+    }
+    .pill {
+      display: inline-block;
+      padding: 8px 14px;
+      margin: 10px 10px 0 0;
+      border-radius: 999px;
+      background: #111827;
+      border: 1px solid #1f2937;
+      font-size: 14px;
+    }
+    .card {
+      background: #0f172a;
+      border-radius: 16px;
+      padding: 28px;
+      border: 1px solid #1e293b;
+      margin-bottom: 24px;
+    }
+    footer {
+      text-align: center;
+      padding: 40px;
+      color: #94a3b8;
+      border-top: 1px solid #1e293b;
+    }
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        gap: 10px;
+      }
+      section {
+        padding: 60px 24px;
+      }
+      h1 {
+        font-size: 36px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <strong>Madhuri K</strong>
+    <div>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section>
+    <h1>Designing intuitive,<br>enterprise-grade user experiences.</h1>
+    <p>
+      Senior UX/UI Engineer with 10+ years of experience designing scalable,
+      accessible, and data-driven digital products across Banking, Healthcare,
+      Retail, and Insurance domains.
+    </p>
+    <div>
+      <span class="pill">UX Research</span>
+      <span class="pill">UI Design</span>
+      <span class="pill">Design Systems</span>
+      <span class="pill">Accessibility (WCAG 2.1)</span>
+      <span class="pill">Figma</span>
+      <span class="pill">React / Angular</span>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <h2>What I Focus On</h2>
+    <div class="card">
+      <p>
+        I specialize in designing and engineering user-centered experiences
+        for complex enterprise platforms. My work focuses on advanced analytics
+        dashboards, scalable design systems, and accessibility-first UX that
+        balances business goals with exceptional usability.
+      </p>
+      <p>
+        I collaborate closely with product owners, business stakeholders,
+        architects, and backend teams to translate complex requirements into
+        intuitive, high-performance frontend solutions.
+      </p>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <h2>Skills</h2>
+
+    <div class="card">
+      <strong>UX / UI Design</strong><br><br>
+      User Research · Wireframing · Prototyping · Usability Testing ·
+      Information Architecture · User Flows · Journey Mapping · Personas
+    </div>
+
+    <div class="card">
+      <strong>Frontend & UI Engineering</strong><br><br>
+      HTML5 · CSS3 · SCSS · JavaScript (ES6+) · TypeScript ·
+      React 18 · Angular 14 · Responsive & Mobile-First Design
+    </div>
+
+    <div class="card">
+      <strong>Data Visualization & Accessibility</strong><br><br>
+      D3.js · Recharts · Chart.js · Plotly · Highcharts ·
+      WCAG 2.1 AA / AAA · ARIA · Screen Readers
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <h2>Experience</h2>
+
+    <div class="card">
+      <strong>Senior UX/UI Engineer – KeyBank</strong><br>
+      <em>Aug 2024 – Present | Remote</em>
+      <p>
+        Designed advanced analytics dashboards serving 10,000+ internal users,
+        improving operational decision-making by 45%. Built scalable design
+        systems and reusable UI components across multiple enterprise platforms
+        while achieving 90+ Lighthouse performance scores.
+      </p>
+    </div>
+
+    <div class="card">
+      <strong>UX/UI Engineer – State of New York (DOHMH)</strong><br>
+      <em>May 2023 – Jul 2024 | Hybrid</em>
+      <p>
+        Designed accessible healthcare eligibility portals serving 5M+ residents.
+        Reduced form abandonment by 35% through improved information architecture,
+        user flows, and WCAG-compliant UX design.
+      </p>
+    </div>
+
+    <div class="card">
+      <strong>UX/UI Engineer – Kohl’s Corporation</strong><br>
+      <em>Jan 2020 – Apr 2023 | Remote</em>
+      <p>
+        Led UX and frontend architecture for large-scale e-commerce redesign
+        impacting 20M+ users. Increased conversion rates by 25% and improved
+        performance by 40% through optimized UI and design systems.
+      </p>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="card">
+      <p>
+        <strong>Email:</strong> madhurirk17@gmail.com<br>
+        <strong>PhoneNo:</strong> 470-485-6962@gmail.com<br>
+        <strong>Location:</strong> USA (Remote)<br>
+        <strong>Role:</strong> Senior UX/UI Engineer
+      </p>
+      <p>
+        Open to senior and lead UX/UI roles focused on enterprise platforms,
+        data-driven experiences, and accessibility-first design.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 Madhuri K · Built with GitHub Pages
+  </footer>
+
+</body>
+</html>
