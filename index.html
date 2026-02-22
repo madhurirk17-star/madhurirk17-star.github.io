@@ -4,101 +4,281 @@
   <meta charset="UTF-8" />
   <title>Madhuri K | Senior UX/UI Engineer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet"/>
   <style>
-    * {
-      box-sizing: border-box;
+    :root {
+      --bg: #070b14;
+      --surface: #0d1220;
+      --surface2: #111827;
+      --border: rgba(255,255,255,0.06);
+      --border-hover: rgba(96,165,250,0.3);
+      --accent: #60a5fa;
+      --accent-green: #34d399;
+      --accent-purple: #a78bfa;
+      --text: #e5e7eb;
+      --muted: #64748b;
+      --card: #0d1220;
     }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body {
-      margin: 0;
-      font-family: Inter, Arial, sans-serif;
-      background: linear-gradient(135deg, #0b1220, #0f1b2e);
-      color: #e5e7eb;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
       line-height: 1.6;
+      overflow-x: hidden;
     }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px);
+      background-size: 72px 72px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* NAV */
     nav {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background: rgba(11, 18, 32, 0.95);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 60px;
-      border-bottom: 1px solid #1e293b;
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(7,11,20,0.92);
+      backdrop-filter: blur(16px);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 18px 60px;
+      border-bottom: 1px solid var(--border);
     }
-    nav strong {
-      font-size: 18px;
+    .nav-brand {
+      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 20px;
+      background: linear-gradient(135deg, #60a5fa, #a78bfa);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
-    nav a {
-      color: #cbd5e1;
-      text-decoration: none;
-      margin-left: 24px;
-      font-size: 14px;
+    .nav-links { display: flex; gap: 8px; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none; font-size: 13px; font-weight: 500;
+      padding: 8px 16px; border-radius: 6px; transition: all 0.2s; letter-spacing: 0.02em;
     }
-    nav a:hover {
-      color: #60a5fa;
+    .nav-links a:hover { color: var(--accent); background: rgba(96,165,250,0.08); }
+
+    /* HERO */
+    .hero {
+      position: relative; z-index: 1;
+      max-width: 1100px; margin: auto;
+      padding: 100px 60px 80px;
     }
-    section {
-      max-width: 1100px;
-      margin: auto;
-      padding: 80px 60px;
+    .glow-orb { position: absolute; border-radius: 50%; pointer-events: none; filter: blur(80px); }
+    .orb1 { width: 400px; height: 400px; background: rgba(96,165,250,0.07); top: 0; right: -100px; }
+    .orb2 { width: 300px; height: 300px; background: rgba(167,139,250,0.06); bottom: 0; right: 200px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(52,211,153,0.1); border: 1px solid rgba(52,211,153,0.2);
+      color: var(--accent-green); font-size: 12px; font-weight: 500;
+      padding: 6px 14px; border-radius: 999px; margin-bottom: 32px; letter-spacing: 0.05em;
     }
-    h1 {
-      font-size: 48px;
-      line-height: 1.2;
-      margin-bottom: 20px;
+    .hero-badge::before {
+      content: ''; width: 7px; height: 7px; border-radius: 50%;
+      background: var(--accent-green); animation: pulse 2s ease-in-out infinite;
     }
-    h2 {
-      font-size: 30px;
-      margin-bottom: 24px;
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(40px, 6vw, 68px); font-weight: 800;
+      line-height: 1.1; letter-spacing: -1.5px; margin-bottom: 24px;
     }
-    p {
-      font-size: 18px;
-      color: #cbd5e1;
-      max-width: 800px;
-    }
+    .hero h1 .highlight { color: var(--accent); }
+    .hero-sub { font-size: 17px; color: var(--muted); max-width: 640px; line-height: 1.75; margin-bottom: 40px; }
+    .hero-metrics { display: flex; gap: 40px; margin-bottom: 44px; flex-wrap: wrap; }
+    .metric { display: flex; flex-direction: column; gap: 2px; }
+    .metric-val { font-family: 'Syne', sans-serif; font-size: 30px; font-weight: 800; color: var(--text); }
+    .metric-val span { color: var(--accent); }
+    .metric-label { font-size: 12px; color: var(--muted); letter-spacing: 0.05em; text-transform: uppercase; }
+    .hero-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 44px; }
     .pill {
-      display: inline-block;
-      padding: 8px 14px;
-      margin: 10px 10px 0 0;
-      border-radius: 999px;
-      background: #111827;
-      border: 1px solid #1f2937;
-      font-size: 14px;
+      display: inline-block; padding: 7px 14px; border-radius: 6px;
+      background: var(--surface2); border: 1px solid var(--border);
+      font-size: 13px; color: #94a3b8; font-weight: 500; transition: all 0.2s;
     }
-    .card {
-      background: #0f172a;
-      border-radius: 16px;
-      padding: 28px;
-      border: 1px solid #1e293b;
-      margin-bottom: 24px;
+    .pill:hover { border-color: var(--accent); color: var(--accent); }
+    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--accent); color: #070b14; padding: 12px 24px; border-radius: 8px;
+      font-size: 14px; font-weight: 600; text-decoration: none; display: inline-block;
+      transition: opacity 0.2s, transform 0.2s;
     }
+    .btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
+    .btn-ghost {
+      background: transparent; color: var(--text); padding: 12px 24px; border-radius: 8px;
+      border: 1px solid var(--border); font-size: 14px; font-weight: 500;
+      text-decoration: none; display: inline-block; transition: all 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* SECTIONS */
+    .section-wrap { position: relative; z-index: 1; border-top: 1px solid var(--border); }
+    .section-wrap.alt { background: var(--surface); }
+    .section-inner { max-width: 1100px; margin: auto; padding: 80px 60px; }
+    .section-label {
+      font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent);
+      letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 10px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section-label::after { content:''; flex:1; max-width:60px; height:1px; background:var(--accent); opacity:0.4; }
+    .section-inner h2 {
+      font-family: 'Syne', sans-serif; font-size: clamp(28px,4vw,40px);
+      font-weight: 800; letter-spacing: -0.5px; margin-bottom: 48px;
+    }
+
+    /* ABOUT */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .about-card {
+      background: var(--bg); border: 1px solid var(--border); border-radius: 12px;
+      padding: 28px; transition: border-color 0.3s;
+    }
+    .about-card:hover { border-color: var(--border-hover); }
+    .about-card h3 { font-family:'Syne',sans-serif; font-size:15px; font-weight:700; color:var(--accent); margin-bottom:12px; }
+    .about-card p { font-size:14px; color:#94a3b8; line-height:1.75; }
+
+    /* SKILLS */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+    .skill-card {
+      background: var(--bg); border: 1px solid var(--border); border-radius: 12px;
+      padding: 22px; transition: border-color 0.3s, transform 0.2s;
+    }
+    .skill-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
+    .skill-card-title {
+      font-family:'Syne',sans-serif; font-size:13px; font-weight:700; color:var(--text);
+      margin-bottom:14px; display:flex; align-items:center; gap:8px;
+    }
+    .skill-dot { width:6px; height:6px; border-radius:50%; background:var(--accent); flex-shrink:0; }
+    .skill-tags { display:flex; flex-wrap:wrap; gap:6px; }
+    .skill-tag {
+      font-size:12px; padding:4px 10px; background:var(--surface2);
+      border:1px solid var(--border); border-radius:4px; color:#94a3b8;
+    }
+
+    /* EXPERIENCE */
+    .exp-list { display:flex; flex-direction:column; gap:16px; }
+    .exp-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 16px; overflow:hidden; transition:border-color 0.3s;
+    }
+    .exp-card:hover { border-color: var(--border-hover); }
+    .exp-card-header {
+      padding: 28px 32px; display:flex; justify-content:space-between;
+      align-items:flex-start; gap:16px; cursor:pointer; user-select:none;
+    }
+    .exp-left { flex:1; }
+    .exp-role-badge {
+      display:inline-block; font-family:'JetBrains Mono',monospace; font-size:11px;
+      color:var(--accent); background:rgba(96,165,250,0.1); border:1px solid rgba(96,165,250,0.2);
+      padding:3px 10px; border-radius:4px; margin-bottom:8px; letter-spacing:0.05em;
+    }
+    .exp-company { font-family:'Syne',sans-serif; font-size:20px; font-weight:800; color:var(--text); margin-bottom:4px; }
+    .exp-meta { font-size:13px; color:var(--muted); margin-bottom:14px; }
+    .exp-project-label { font-size:12px; color:#94a3b8; }
+    .exp-project-label strong { color:var(--text); font-weight:500; }
+    .exp-right { text-align:right; display:flex; flex-direction:column; align-items:flex-end; gap:10px; }
+    .exp-period {
+      font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--muted);
+      white-space:nowrap; background:var(--surface2); padding:6px 12px;
+      border-radius:6px; border:1px solid var(--border);
+    }
+    .exp-toggle-btn {
+      width:32px; height:32px; border-radius:8px; border:1px solid var(--border);
+      background:var(--surface2); color:var(--muted);
+      display:flex; align-items:center; justify-content:center;
+      font-size:18px; transition:all 0.2s; flex-shrink:0;
+    }
+    .exp-card.open .exp-toggle-btn { background:rgba(96,165,250,0.1); border-color:var(--accent); color:var(--accent); }
+    .exp-toggle-icon { transition:transform 0.3s; display:block; line-height:1; }
+    .exp-card.open .exp-toggle-icon { transform:rotate(45deg); }
+    .exp-achievements { padding:0 32px 20px; display:flex; flex-wrap:wrap; gap:8px; }
+    .achievement-chip {
+      font-size:12px; padding:5px 12px; border-radius:6px;
+      background:rgba(52,211,153,0.08); border:1px solid rgba(52,211,153,0.2);
+      color:var(--accent-green); font-weight:500;
+    }
+    .exp-details { display:none; padding:0 32px 28px; border-top:1px solid var(--border); }
+    .exp-card.open .exp-details { display:block; }
+    .exp-details-inner { padding-top:24px; }
+    .details-title {
+      font-family:'Syne',sans-serif; font-size:13px; font-weight:700; color:var(--muted);
+      letter-spacing:0.08em; text-transform:uppercase; margin-bottom:16px;
+    }
+    .resp-list { list-style:none; display:grid; gap:10px; margin-bottom:24px; }
+    .resp-list li { font-size:14px; color:#94a3b8; padding-left:22px; position:relative; line-height:1.65; }
+    .resp-list li::before { content:'▸'; position:absolute; left:0; color:var(--accent); font-size:12px; top:2px; }
+    .resp-list li strong { color:var(--text); font-weight:600; }
+    .env-row { display:flex; flex-wrap:wrap; gap:6px; padding-top:20px; border-top:1px solid var(--border); }
+    .env-tag {
+      font-size:11px; padding:4px 9px; border-radius:4px; background:var(--surface2);
+      border:1px solid var(--border); color:var(--muted); font-family:'JetBrains Mono',monospace;
+    }
+
+    /* CONTACT */
+    .contact-grid { display:grid; grid-template-columns:1.2fr 1fr; gap:24px; align-items:start; }
+    .contact-card, .edu-card {
+      background:var(--bg); border:1px solid var(--border);
+      border-radius:16px; padding:36px;
+    }
+    .contact-card h3, .edu-card h3 {
+      font-family:'Syne',sans-serif; font-size:22px; font-weight:800; margin-bottom:8px;
+    }
+    .contact-card p { font-size:14px; color:var(--muted); line-height:1.75; margin-bottom:28px; }
+    .contact-item {
+      display:flex; align-items:center; gap:14px;
+      padding:14px 0; border-bottom:1px solid var(--border);
+    }
+    .contact-item:last-child { border-bottom:none; }
+    .contact-icon {
+      width:36px; height:36px; border-radius:8px;
+      background:rgba(96,165,250,0.1); border:1px solid rgba(96,165,250,0.2);
+      display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0;
+    }
+    .contact-detail { display:flex; flex-direction:column; gap:2px; }
+    .contact-label { font-size:11px; color:var(--muted); letter-spacing:0.08em; text-transform:uppercase; }
+    .contact-value { font-size:14px; color:var(--text); font-weight:500; }
+    .contact-value a { color:var(--text); text-decoration:none; transition:color 0.2s; }
+    .contact-value a:hover { color:var(--accent); }
+    .edu-item { padding:16px 0; border-bottom:1px solid var(--border); }
+    .edu-item:last-child { border-bottom:none; padding-bottom:0; }
+    .edu-degree { font-size:15px; font-weight:600; color:var(--text); margin-bottom:4px; }
+    .edu-school { font-size:13px; color:var(--accent); margin-bottom:4px; }
+    .edu-year { font-size:12px; color:var(--muted); font-family:'JetBrains Mono',monospace; }
+    .sub-title {
+      font-family:'Syne',sans-serif; font-size:13px; font-weight:700; color:var(--muted);
+      margin-bottom:14px; letter-spacing:0.06em; text-transform:uppercase;
+    }
+
     footer {
-      text-align: center;
-      padding: 40px;
-      color: #94a3b8;
-      border-top: 1px solid #1e293b;
+      position:relative; z-index:1; text-align:center; padding:40px 24px;
+      color:var(--muted); border-top:1px solid var(--border); font-size:13px;
     }
+
+    /* Fade in */
+    .fade-in { opacity:0; transform:translateY(20px); transition:opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity:1; transform:translateY(0); }
+
     @media (max-width: 768px) {
-      nav {
-        flex-direction: column;
-        gap: 10px;
-      }
-      section {
-        padding: 60px 24px;
-      }
-      h1 {
-        font-size: 36px;
-      }
+      nav { padding:16px 24px; }
+      .nav-links { display:none; }
+      .hero { padding:60px 24px 60px; }
+      .section-inner { padding:60px 24px; }
+      .hero-metrics { gap:24px; }
+      .about-grid { grid-template-columns:1fr; }
+      .contact-grid { grid-template-columns:1fr; }
+      .exp-card-header { flex-direction:column; }
+      .exp-right { flex-direction:row; align-items:center; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAVIGATION -->
+  <!-- NAV -->
   <nav>
-    <strong>Madhuri K</strong>
-    <div>
+    <div class="nav-brand">Madhuri K.</div>
+    <div class="nav-links">
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
       <a href="#experience">Experience</a>
@@ -107,149 +287,408 @@
   </nav>
 
   <!-- HERO -->
-  <section>
-    <h1>Designing intuitive,<br>enterprise-grade user experiences.</h1>
-    <p>
-      Senior UX/UI Engineer with 10+ years of experience designing scalable,
-      accessible, and data-driven digital products across Banking, Healthcare,
-      Retail, and Insurance domains.
+  <div class="hero">
+    <div class="glow-orb orb1"></div>
+    <div class="glow-orb orb2"></div>
+    <div class="hero-badge">Available for Senior Roles</div>
+    <h1>Designing <span class="highlight">intuitive</span>,<br/>enterprise-grade<br/>user experiences.</h1>
+    <p class="hero-sub">
+      Senior UX/UI Engineer with <strong style="color:var(--text)">10+ years</strong> of experience designing scalable, accessible, and data-driven digital products across Banking, Healthcare, Retail, and Insurance domains.
     </p>
-    <div>
+    <div class="hero-metrics">
+      <div class="metric"><div class="metric-val">10<span>+</span></div><div class="metric-label">Years Experience</div></div>
+      <div class="metric"><div class="metric-val">25<span>M+</span></div><div class="metric-label">Users Impacted</div></div>
+      <div class="metric"><div class="metric-val">90<span>+</span></div><div class="metric-label">Lighthouse Score</div></div>
+      <div class="metric"><div class="metric-val">40<span>%</span></div><div class="metric-label">Dev Time Reduced</div></div>
+    </div>
+    <div class="hero-pills">
       <span class="pill">UX Research</span>
       <span class="pill">UI Design</span>
       <span class="pill">Design Systems</span>
       <span class="pill">Accessibility (WCAG 2.1)</span>
-      <span class="pill">Figma</span>
-      <span class="pill">React / Angular</span>
+      <span class="pill">Figma · Adobe XD</span>
+      <span class="pill">React.js · Angular</span>
+      <span class="pill">D3.js · Data Viz</span>
+      <span class="pill">TypeScript</span>
     </div>
-  </section>
+    <div class="hero-ctas">
+      <a href="#experience" class="btn-primary">View Experience →</a>
+      <a href="mailto:madhurirk17@gmail.com" class="btn-ghost">Get in Touch</a>
+    </div>
+  </div>
 
   <!-- ABOUT -->
-  <section id="about">
-    <h2>What I Focus On</h2>
-    <div class="card">
-      <p>
-        I specialize in designing and engineering user-centered experiences
-        for complex enterprise platforms. My work focuses on advanced analytics
-        dashboards, scalable design systems, and accessibility-first UX that
-        balances business goals with exceptional usability.
-      </p>
-      <p>
-        I collaborate closely with product owners, business stakeholders,
-        architects, and backend teams to translate complex requirements into
-        intuitive, high-performance frontend solutions.
-      </p>
+  <div class="section-wrap" id="about">
+    <div class="section-inner">
+      <div class="section-label">01 — About</div>
+      <h2>What I Focus On</h2>
+      <div class="about-grid">
+        <div class="about-card fade-in">
+          <h3>🎨 Design + Engineering</h3>
+          <p>I bridge the gap between creative vision and robust engineering — designing intuitive interfaces in Figma, then building them with React, Angular, and TypeScript. I partner closely with Product Owners, Architects, and Backend teams to align business goals with user needs.</p>
+        </div>
+        <div class="about-card fade-in">
+          <h3>📊 Analytics & Data Visualization</h3>
+          <p>Specialized in building Advanced Analytics Visualization Systems with D3.js, Recharts, Plotly, and Highcharts — delivering real-time dashboards, trust scoring models, and KPI widgets that make complex data actionable for enterprise stakeholders.</p>
+        </div>
+        <div class="about-card fade-in">
+          <h3>♿ Accessibility-First Design</h3>
+          <p>Champion of inclusive design — implementing WCAG 2.1 AA/AAA and Section 508 standards with hands-on expertise in ARIA roles, keyboard navigation, screen reader compatibility (JAWS, NVDA), and color contrast validation across every project.</p>
+        </div>
+        <div class="about-card fade-in">
+          <h3>⚡ Performance Engineering</h3>
+          <p>Consistently achieving 90+ Lighthouse scores through code splitting, lazy loading, WebP optimization, CDN integration, and Webpack/Vite tuning. Delivered 25–40% page load improvements across enterprise e-commerce and banking platforms.</p>
+        </div>
+      </div>
     </div>
-  </section>
+  </div>
 
   <!-- SKILLS -->
-  <section id="skills">
-    <h2>Skills</h2>
-
-    <div class="card">
-      <strong>UX / UI Design</strong><br><br>
-      User Research · Wireframing · Prototyping · Usability Testing ·
-      Information Architecture · User Flows · Journey Mapping · Personas
+  <div class="section-wrap alt" id="skills">
+    <div class="section-inner">
+      <div class="section-label">02 — Skills</div>
+      <h2>Technical Expertise</h2>
+      <div class="skills-grid">
+        <div class="skill-card fade-in">
+          <div class="skill-card-title"><span class="skill-dot"></span>UX / UI Design & Prototyping</div>
+          <div class="skill-tags"><span class="skill-tag">Figma</span><span class="skill-tag">Adobe XD</span><span class="skill-tag">Sketch</span><span class="skill-tag">InVision</span><span class="skill-tag">Zeplin</span><span class="skill-tag">Balsamiq</span><span class="skill-tag">Wireframing</span><span class="skill-tag">User Research</span><span class="skill-tag">Usability Testing</span><span class="skill-tag">Information Architecture</span><span class="skill-tag">Journey Mapping</span><span class="skill-tag">Personas</span></div>
+        </div>
+        <div class="skill-card fade-in">
+          <div class="skill-card-title"><span class="skill-dot" style="background:var(--accent-purple)"></span>Frontend Development</div>
+          <div class="skill-tags"><span class="skill-tag">HTML5</span><span class="skill-tag">CSS3</span><span class="skill-tag">SCSS/SASS</span><span class="skill-tag">JavaScript (ES6+)</span><span class="skill-tag">TypeScript</span><span class="skill-tag">Responsive Design</span><span class="skill-tag">Mobile-First</span><span class="skill-tag">CSS Grid</span><span class="skill-tag">Flexbox</span></div>
+        </div>
+        <div class="skill-card fade-in">
+          <div class="skill-card-title"><span class="skill-dot" style="background:var(--accent-green)"></span>JavaScript Frameworks</div>
+          <div class="skill-tags"><span class="skill-tag">React.js 16/17/18</span><span class="skill-tag">Redux Toolkit</span><span class="skill-tag">React Hooks</span><span class="skill-tag">Context API</span><span class="skill-tag">Angular 8–14</span><span class="skill-tag">RxJS</span><span class="skill-tag">NgRx</span><span class="skill-tag">Angular Material</span></div>
+        </div>
+        <div class="skill-card fade-in">
+          <div class="skill-card-title"><span class="skill-dot"></span>Data Visualization</div>
+          <div class="skill-tags"><span class="skill-tag">D3.js</span><span class="skill-tag">Recharts</span><span class="skill-tag">Chart.js</span><span class="skill-tag">Plotly</span><span class="skill-tag">Highcharts</span><span class="skill-tag">ECharts</span><span class="skill-tag">Victory</span><span class="skill-tag">Nivo</span><span class="skill-tag">Real-time Dashboards</span></div>
+        </div>
+        <div class="skill-card fade-in">
+          <div class="skill-card-title"><span class="skill-dot" style="background:var(--accent-purple)"></span>UI Frameworks</div>
+          <div class="skill-tags"><span class="skill-tag">Material-UI (MUI)</span><span class="skill-tag">Ant Design</span><span class="skill-tag">Bootstrap 4/5</span><span class="skill-tag">Tailwind CSS</span><span class="skill-tag">Chakra UI</span><span class="skill-tag">Styled Components</span><span class="skill-tag">Emotion</span></div>
+        </div>
+        <div class="skill-card fade-in">
+          <div class="skill-card-title"><span class="skill-dot" style="background:var(--accent-green)"></span>Testing & QA</div>
+          <div class="skill-tags"><span class="skill-tag">Jest</span><span class="skill-tag">Enzyme</span><span class="skill-tag">Cypress</span><span class="skill-tag">React Testing Library</span><span class="skill-tag">Jasmine</span><span class="skill-tag">Karma</span><span class="skill-tag">Mocha</span><span class="skill-tag">85–90% Coverage</span></div>
+        </div>
+        <div class="skill-card fade-in">
+          <div class="skill-card-title"><span class="skill-dot"></span>Build Tools & DevOps</div>
+          <div class="skill-tags"><span class="skill-tag">Webpack</span><span class="skill-tag">Vite</span><span class="skill-tag">Babel</span><span class="skill-tag">Git / GitHub</span><span class="skill-tag">Jenkins</span><span class="skill-tag">GitHub Actions</span><span class="skill-tag">Docker</span><span class="skill-tag">AWS (S3, CloudFront)</span><span class="skill-tag">Azure DevOps</span></div>
+        </div>
+        <div class="skill-card fade-in">
+          <div class="skill-card-title"><span class="skill-dot" style="background:var(--accent-purple)"></span>Accessibility & APIs</div>
+          <div class="skill-tags"><span class="skill-tag">WCAG 2.1 AA/AAA</span><span class="skill-tag">Section 508</span><span class="skill-tag">ARIA</span><span class="skill-tag">RESTful APIs</span><span class="skill-tag">GraphQL</span><span class="skill-tag">WebSockets</span><span class="skill-tag">OAuth2 / JWT</span><span class="skill-tag">Node.js</span></div>
+        </div>
+      </div>
     </div>
-
-    <div class="card">
-      <strong>Frontend & UI Engineering</strong><br><br>
-      HTML5 · CSS3 · SCSS · JavaScript (ES6+) · TypeScript ·
-      React 18 · Angular 14 · Responsive & Mobile-First Design
-    </div>
-
-    <div class="card">
-      <strong>Data Visualization & Accessibility</strong><br><br>
-      D3.js · Recharts · Chart.js · Plotly · Highcharts ·
-      WCAG 2.1 AA / AAA · ARIA · Screen Readers
-    </div>
-  </section>
+  </div>
 
   <!-- EXPERIENCE -->
-  <section id="experience">
-    <h2>Experience</h2>
+  <div class="section-wrap" id="experience">
+    <div class="section-inner">
+      <div class="section-label">03 — Experience</div>
+      <h2>Professional Experience</h2>
+      <div class="exp-list">
 
-    <div class="card">
-      <strong>Senior UX/UI Engineer – KeyBank</strong><br>
-      <em>Aug 2024 – Present | Remote</em>
-      <p>
-        Designed advanced analytics dashboards serving 10,000+ internal users,
-        improving operational decision-making by 45%. Built scalable design
-        systems and reusable UI components across multiple enterprise platforms
-        while achieving 90+ Lighthouse performance scores.
-      </p>
+        <!-- Key Bank -->
+        <div class="exp-card fade-in" id="card-1">
+          <div class="exp-card-header" onclick="toggleExp('card-1')">
+            <div class="exp-left">
+              <div class="exp-role-badge">Senior UX/UI Engineer</div>
+              <div class="exp-company">Key Bank</div>
+              <div class="exp-meta">📍 Cleveland, OH (Remote)</div>
+              <div class="exp-project-label">Project: <strong>Enterprise Banking Analytics Platform & Customer Experience Portal</strong></div>
+            </div>
+            <div class="exp-right">
+              <div class="exp-period">Aug 2024 – Present</div>
+              <div class="exp-toggle-btn"><span class="exp-toggle-icon">+</span></div>
+            </div>
+          </div>
+          <div class="exp-achievements">
+            <span class="achievement-chip">↑ 45% Operational Decision-Making</span>
+            <span class="achievement-chip">↓ 40% Development Time</span>
+            <span class="achievement-chip">90+ Lighthouse Score</span>
+            <span class="achievement-chip">10,000+ Internal Users</span>
+            <span class="achievement-chip">15+ Microservices</span>
+          </div>
+          <div class="exp-details">
+            <div class="exp-details-inner">
+              <div class="details-title">Responsibilities</div>
+              <ul class="resp-list">
+                <li>Designed and developed <strong>Advanced Analytics Visualization Systems</strong> using React.js, D3.js, Recharts, and Plotly — creating interactive dashboards with real-time financial metrics, transaction patterns, fraud detection indicators, and trust scoring models for 10,000+ internal users</li>
+                <li>Built <strong>real-time monitoring dashboards</strong> using WebSockets and Redux for live transaction tracking, alert systems, and application behavior analytics with drill-down functionality and customizable KPI widgets</li>
+                <li>Created comprehensive <strong>design systems and component libraries</strong> in React with TypeScript, establishing consistent UI patterns across 15+ microservices and reducing development time by 40%</li>
+                <li>Designed responsive, mobile-first banking portals using <strong>React, Material-UI, Tailwind CSS, and SCSS</strong> with full WCAG 2.1 AA compliance across desktop, tablet, and mobile</li>
+                <li>Designed <strong>high-fidelity prototypes and interactive mockups</strong> in Figma and Adobe XD, iterating on stakeholder feedback before each development sprint</li>
+                <li>Conducted <strong>user research, created personas and journey maps</strong>, and validated design decisions through usability testing and A/B testing</li>
+                <li>Integrated <strong>OAuth2/JWT authentication flows</strong>, session management, and role-based UI rendering for secure, personalized user experiences</li>
+                <li>Partnered with Spring Boot and Node.js developers to define API contracts, payload structures, and ensure smooth real-time data integration</li>
+                <li>Implemented <strong>CI/CD pipelines</strong> using GitHub Actions and Jenkins with automated Jest/Enzyme/Cypress testing achieving 85%+ code coverage</li>
+              </ul>
+              <div class="env-row">
+                <span class="env-tag">React.js</span><span class="env-tag">Redux</span><span class="env-tag">TypeScript</span><span class="env-tag">D3.js</span><span class="env-tag">Recharts</span><span class="env-tag">Plotly</span><span class="env-tag">Material-UI</span><span class="env-tag">Tailwind CSS</span><span class="env-tag">SCSS</span><span class="env-tag">Figma</span><span class="env-tag">Adobe XD</span><span class="env-tag">WebSockets</span><span class="env-tag">GraphQL</span><span class="env-tag">Jest</span><span class="env-tag">Cypress</span><span class="env-tag">GitHub Actions</span><span class="env-tag">AWS S3/CloudFront</span><span class="env-tag">WCAG 2.1</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- State of NY -->
+        <div class="exp-card fade-in" id="card-2">
+          <div class="exp-card-header" onclick="toggleExp('card-2')">
+            <div class="exp-left">
+              <div class="exp-role-badge">UX/UI Engineer</div>
+              <div class="exp-company">State of New York (DOHMH)</div>
+              <div class="exp-meta">📍 Albany, NY (Hybrid)</div>
+              <div class="exp-project-label">Project: <strong>Health & Human Services Eligibility Portal Modernization</strong></div>
+            </div>
+            <div class="exp-right">
+              <div class="exp-period">May 2023 – Jul 2024</div>
+              <div class="exp-toggle-btn"><span class="exp-toggle-icon">+</span></div>
+            </div>
+          </div>
+          <div class="exp-achievements">
+            <span class="achievement-chip">5M+ NY Residents Served</span>
+            <span class="achievement-chip">↓ 35% Form Abandonment</span>
+            <span class="achievement-chip">↑ 50% Faster Dev via Storybook</span>
+            <span class="achievement-chip">Section 508 Compliant</span>
+          </div>
+          <div class="exp-details">
+            <div class="exp-details-inner">
+              <div class="details-title">Responsibilities</div>
+              <ul class="resp-list">
+                <li>Designed and developed modern, accessible UIs for <strong>Medicaid, SNAP, and Child Support eligibility portals</strong> serving 5M+ New York residents, dramatically improving application completion rates</li>
+                <li>Created comprehensive <strong>information architecture, user flows, and wireframes</strong> in Figma and Sketch for complex multi-step application processes, reducing cognitive load for vulnerable populations</li>
+                <li>Produced detailed <strong>low- and high-fidelity wireframes</strong> for applicant-facing and case-worker portals, ensuring compliance with Section 508 and WCAG 2.1 standards</li>
+                <li>Built responsive front-end applications using <strong>Angular 12/14, TypeScript, RxJS, NgRx</strong>, and Angular Material aligned with NY.gov design standards</li>
+                <li>Developed <strong>data visualization dashboards</strong> using Chart.js and Highcharts for case workers to monitor application statuses, approval timelines, and demographic analytics in real-time</li>
+                <li>Implemented <strong>Progressive Web App (PWA)</strong> features including offline capability and push notifications, ensuring accessibility for underserved communities</li>
+                <li>Conducted <strong>accessibility audits and remediation</strong> including screen reader testing (JAWS, NVDA), keyboard navigation, color contrast validation, and semantic HTML</li>
+                <li>Performed <strong>usability testing sessions</strong> with actual case workers and applicants, iterating designs to improve task completion rates</li>
+                <li>Established <strong>component documentation using Storybook</strong>, enabling 50% faster development across teams</li>
+              </ul>
+              <div class="env-row">
+                <span class="env-tag">Angular 12/14</span><span class="env-tag">TypeScript</span><span class="env-tag">RxJS</span><span class="env-tag">NgRx</span><span class="env-tag">Angular Material</span><span class="env-tag">Chart.js</span><span class="env-tag">Highcharts</span><span class="env-tag">SCSS</span><span class="env-tag">Figma</span><span class="env-tag">Sketch</span><span class="env-tag">Storybook</span><span class="env-tag">REST APIs</span><span class="env-tag">SOAP</span><span class="env-tag">Jenkins</span><span class="env-tag">Section 508</span><span class="env-tag">WCAG 2.1</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kohl's -->
+        <div class="exp-card fade-in" id="card-3">
+          <div class="exp-card-header" onclick="toggleExp('card-3')">
+            <div class="exp-left">
+              <div class="exp-role-badge">UX/UI Engineer</div>
+              <div class="exp-company">Kohl's Corporation</div>
+              <div class="exp-meta">📍 San Francisco, CA (Remote)</div>
+              <div class="exp-project-label">Project: <strong>E-Commerce Platform Redesign & Analytics Dashboard</strong></div>
+            </div>
+            <div class="exp-right">
+              <div class="exp-period">Jan 2020 – Apr 2023</div>
+              <div class="exp-toggle-btn"><span class="exp-toggle-icon">+</span></div>
+            </div>
+          </div>
+          <div class="exp-achievements">
+            <span class="achievement-chip">20M+ Active Users</span>
+            <span class="achievement-chip">↑ 25% Conversion Rate</span>
+            <span class="achievement-chip">↑ 40% Page Load Speed</span>
+            <span class="achievement-chip">95+ Mobile Lighthouse</span>
+            <span class="achievement-chip">50+ Reusable Components</span>
+          </div>
+          <div class="exp-details">
+            <div class="exp-details-inner">
+              <div class="details-title">Responsibilities</div>
+              <ul class="resp-list">
+                <li>Led front-end architecture and UX design for <strong>Kohl's e-commerce platform redesign</strong> impacting 20M+ active users, resulting in a 25% increase in conversion rates and 40% improvement in page load times</li>
+                <li>Designed and developed <strong>product recommendation engines and personalization interfaces</strong> using React, Redux, and TypeScript with A/B testing frameworks</li>
+                <li>Created <strong>interactive analytics dashboards</strong> using D3.js and Recharts for merchandising teams to visualize inventory trends, sales performance, and customer behavior analytics</li>
+                <li>Built a comprehensive <strong>design system and component library</strong> in React with Styled Components and Storybook, standardizing 50+ reusable components including navigation, product cards, filters, and checkout flows</li>
+                <li>Implemented <strong>responsive, mobile-first design</strong> using CSS Grid, Flexbox, and media queries — achieving 95+ mobile Lighthouse scores across all device categories</li>
+                <li>Designed <strong>user journey maps and wireframes</strong> in Figma for checkout optimization, cart abandonment recovery, and loyalty program integration</li>
+                <li>Integrated <strong>GraphQL and REST APIs</strong> for product catalog, inventory, pricing, and order processing with optimistic UI updates and real-time synchronization</li>
+                <li>Implemented advanced web performance: code splitting, lazy loading, <strong>WebP image optimization</strong>, CloudFront CDN, and browser caching</li>
+                <li>Established <strong>E2E testing automation</strong> using Cypress for critical flows — search, add-to-cart, checkout, and payment — achieving 90%+ test coverage</li>
+              </ul>
+              <div class="env-row">
+                <span class="env-tag">React.js</span><span class="env-tag">Redux</span><span class="env-tag">TypeScript</span><span class="env-tag">D3.js</span><span class="env-tag">Recharts</span><span class="env-tag">Styled Components</span><span class="env-tag">CSS Grid</span><span class="env-tag">Figma</span><span class="env-tag">GraphQL</span><span class="env-tag">Storybook</span><span class="env-tag">Cypress</span><span class="env-tag">Jest</span><span class="env-tag">Webpack</span><span class="env-tag">AWS S3/CloudFront</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CHUBB -->
+        <div class="exp-card fade-in" id="card-4">
+          <div class="exp-card-header" onclick="toggleExp('card-4')">
+            <div class="exp-left">
+              <div class="exp-role-badge">UI Developer</div>
+              <div class="exp-company">CHUBB Insurance</div>
+              <div class="exp-meta">📍 New York, NY (Hybrid)</div>
+              <div class="exp-project-label">Project: <strong>Insurance Claims Management & Policy Servicing Portal</strong></div>
+            </div>
+            <div class="exp-right">
+              <div class="exp-period">Dec 2016 – Nov 2019</div>
+              <div class="exp-toggle-btn"><span class="exp-toggle-icon">+</span></div>
+            </div>
+          </div>
+          <div class="exp-achievements">
+            <span class="achievement-chip">80%+ Code Coverage</span>
+            <span class="achievement-chip">WCAG 2.0 AA Compliant</span>
+            <span class="achievement-chip">Mentored Junior Developers</span>
+            <span class="achievement-chip">Cross-browser Compatible</span>
+          </div>
+          <div class="exp-details">
+            <div class="exp-details-inner">
+              <div class="details-title">Responsibilities</div>
+              <ul class="resp-list">
+                <li>Designed and developed intuitive UIs for <strong>insurance claims submission, policy management, and customer service portals</strong> serving agents, underwriters, and policyholders across commercial and personal lines</li>
+                <li>Built <strong>complex multi-step form workflows</strong> using React, Redux Form, and Formik with conditional logic, file uploads, and dynamic field rendering based on policy types and coverage selections</li>
+                <li>Created <strong>data visualization components</strong> using Chart.js and Recharts for claims analytics, loss ratio reporting, and underwriting dashboards with drill-down capabilities</li>
+                <li>Implemented <strong>React component architecture</strong> using HOCs, Render Props, and React Hooks for code reusability and maintainable codebase structure</li>
+                <li>Developed responsive layouts using <strong>Bootstrap 4, SCSS, and CSS3</strong> ensuring cross-browser compatibility (Chrome, Firefox, Safari, Edge)</li>
+                <li>Integrated <strong>RESTful APIs with Spring Boot</strong> for policy data retrieval, claims submission, document management, and payment processing</li>
+                <li>Implemented accessibility features ensuring <strong>WCAG 2.0 AA compliance</strong> with ARIA labels, keyboard shortcuts, and screen reader support</li>
+                <li>Conducted code reviews and <strong>mentored junior developers</strong> on React best practices and component design patterns</li>
+                <li>Used <strong>Docker and Jenkins</strong> for CI/CD automation with Jest and Enzyme unit testing achieving 80%+ code coverage</li>
+              </ul>
+              <div class="env-row">
+                <span class="env-tag">React.js</span><span class="env-tag">Redux</span><span class="env-tag">TypeScript</span><span class="env-tag">Chart.js</span><span class="env-tag">Recharts</span><span class="env-tag">Bootstrap 4</span><span class="env-tag">SCSS</span><span class="env-tag">Formik</span><span class="env-tag">Jest</span><span class="env-tag">Enzyme</span><span class="env-tag">Docker</span><span class="env-tag">Jenkins</span><span class="env-tag">Figma</span><span class="env-tag">WCAG 2.0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Legato -->
+        <div class="exp-card fade-in" id="card-5">
+          <div class="exp-card-header" onclick="toggleExp('card-5')">
+            <div class="exp-left">
+              <div class="exp-role-badge">UI Developer</div>
+              <div class="exp-company">Legato</div>
+              <div class="exp-meta">📍 Hyderabad, India</div>
+              <div class="exp-project-label">Project: <strong>Enterprise Resource Planning (ERP) System</strong></div>
+            </div>
+            <div class="exp-right">
+              <div class="exp-period">Mar 2014 – Apr 2016</div>
+              <div class="exp-toggle-btn"><span class="exp-toggle-icon">+</span></div>
+            </div>
+          </div>
+          <div class="exp-achievements">
+            <span class="achievement-chip">ERP Modules Built</span>
+            <span class="achievement-chip">Real-time BI Dashboards</span>
+            <span class="achievement-chip">Agile / Scrum</span>
+            <span class="achievement-chip">D3.js Data Visualization</span>
+          </div>
+          <div class="exp-details">
+            <div class="exp-details-inner">
+              <div class="details-title">Responsibilities</div>
+              <ul class="resp-list">
+                <li>Developed modern SPAs using <strong>AngularJS, JavaScript, HTML5, CSS3, and Bootstrap</strong> for ERP modules including inventory management, sales tracking, and reporting dashboards</li>
+                <li>Designed <strong>foundational wireframes and UI layouts</strong> for ERP modules, ensuring consistency across business workflows and ease of use for enterprise business users</li>
+                <li>Created <strong>interactive data visualizations</strong> using D3.js and Chart.js for BI dashboards displaying sales metrics, inventory levels, and financial KPIs with real-time updates</li>
+                <li>Implemented <strong>RESTful API integration</strong> using AngularJS services and HTTP interceptors for seamless data exchange with Spring Boot microservices</li>
+                <li>Developed <strong>reusable AngularJS directives and custom components</strong> for form controls, data tables, modals, and navigation menus</li>
+                <li>Collaborated in <strong>Agile Scrum teams</strong>, participating in sprint planning, daily standups, retrospectives, and demos using JIRA for task tracking</li>
+                <li>Performed <strong>unit testing</strong> using Jasmine and Karma ensuring code quality, functionality validation, and regression prevention</li>
+              </ul>
+              <div class="env-row">
+                <span class="env-tag">AngularJS</span><span class="env-tag">JavaScript</span><span class="env-tag">HTML5</span><span class="env-tag">CSS3</span><span class="env-tag">Bootstrap</span><span class="env-tag">D3.js</span><span class="env-tag">Chart.js</span><span class="env-tag">SASS</span><span class="env-tag">Git</span><span class="env-tag">JIRA</span><span class="env-tag">Jasmine</span><span class="env-tag">Karma</span><span class="env-tag">Agile/Scrum</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
-
-    <div class="card">
-      <strong>UX/UI Engineer – State of New York (DOHMH)</strong><br>
-      <em>May 2023 – Jul 2024 | Hybrid</em>
-      <p>
-        Designed accessible healthcare eligibility portals serving 5M+ residents.
-        Reduced form abandonment by 35% through improved information architecture,
-        user flows, and WCAG-compliant UX design.
-      </p>
-    </div>
-
-    <div class="card">
-      <strong>UX/UI Engineer – Kohl’s Corporation</strong><br>
-      <em>Jan 2020 – Apr 2023 | Remote</em>
-      <p>
-        Led UX and frontend architecture for large-scale e-commerce redesign
-        impacting 20M+ users. Increased conversion rates by 25% and improved
-        performance by 40% through optimized UI and design systems.
-      </p>
-    </div>
-
-    <div class="card">
-  <strong>UI Developer – CHUBB Insurance</strong><br>
-  <em>Jan 2017 – Nov 2019 | Hybrid</em>
-  <p>
-    Designed and developed enterprise insurance claims and policy servicing
-    portals for agents and underwriters. Built complex multi-step forms,
-    analytics dashboards, and reusable React components while ensuring
-    WCAG-compliant, accessible user experiences across browsers and devices.
-  </p>
-  <p>
-    Key focus areas included claims lifecycle workflows, underwriting dashboards,
-    real-time reporting visualizations, and secure API integrations.
-  </p>
-</div>
-<div class="card">
-  <strong>UI Developer – Legato</strong><br>
-  <em>Mar 2014 – Apr 2016 | Hyderabad, India</em>
-  <p>
-    Developed responsive ERP web applications for inventory management,
-    sales tracking, and reporting dashboards using AngularJS, HTML5, CSS3,
-    and Bootstrap.
-  </p>
-  <p>
-    Created interactive data visualizations with D3.js and Chart.js and
-    collaborated in Agile teams to deliver scalable, business-critical
-    enterprise modules.
-  </p>
-</div>
-  </section>
+  </div>
 
   <!-- CONTACT -->
-  <section id="contact">
-    <h2>Contact</h2>
-    <div class="card">
-      <p>
-        <strong>Email:</strong> madhurirk17@gmail.com<br>
-        <strong>PhoneNo:</strong> 470-485-6962@gmail.com<br>
-        <strong>Location:</strong> USA (Remote)<br>
-        <strong>Role:</strong> Senior UX/UI Engineer
-      </p>
-      <p>
-        Open to senior and lead UX/UI roles focused on enterprise platforms,
-        data-driven experiences, and accessibility-first design.
-      </p>
+  <div class="section-wrap alt" id="contact">
+    <div class="section-inner">
+      <div class="section-label">04 — Contact</div>
+      <h2>Get in Touch</h2>
+      <div class="contact-grid">
+        <div class="contact-card fade-in">
+          <h3>Let's build something great.</h3>
+          <p>Open to Senior UX/UI Engineer, Tech Lead, and Principal Engineer roles focused on enterprise platforms, data-driven experiences, and accessibility-first design. Also available for consulting engagements.</p>
+          <div class="contact-item">
+            <div class="contact-icon">✉️</div>
+            <div class="contact-detail">
+              <div class="contact-label">Email</div>
+              <div class="contact-value"><a href="mailto:madhurirk17@gmail.com">madhurirk17@gmail.com</a></div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📞</div>
+            <div class="contact-detail">
+              <div class="contact-label">Phone</div>
+              <div class="contact-value"><a href="tel:4704856962">470-485-6962</a></div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">🌐</div>
+            <div class="contact-detail">
+              <div class="contact-label">Portfolio</div>
+              <div class="contact-value"><a href="https://madhurirk17-star.github.io" target="_blank">madhurirk17-star.github.io</a></div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div class="contact-detail">
+              <div class="contact-label">Location</div>
+              <div class="contact-value">USA (Open to Remote)</div>
+            </div>
+          </div>
+        </div>
+        <div class="edu-card fade-in">
+          <h3>Education</h3>
+          <div class="edu-item">
+            <div class="edu-degree">Bachelor of Science in Computer Science</div>
+            <div class="edu-school">Satavahana University</div>
+            <div class="edu-year">2010 – 2014</div>
+          </div>
+          <div style="margin-top:28px;">
+            <div class="sub-title">Industries Served</div>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;">
+              <span class="skill-tag">🏦 Banking</span>
+              <span class="skill-tag">🏥 Healthcare</span>
+              <span class="skill-tag">🛍️ Retail / E-Commerce</span>
+              <span class="skill-tag">🛡️ Insurance</span>
+              <span class="skill-tag">🏛️ Government</span>
+            </div>
+          </div>
+          <div style="margin-top:28px;">
+            <div class="sub-title">Key Strengths</div>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <div style="font-size:13px;color:#94a3b8;">✓ &nbsp;Advanced Analytics & Real-time Dashboards</div>
+              <div style="font-size:13px;color:#94a3b8;">✓ &nbsp;Design Systems & Component Libraries</div>
+              <div style="font-size:13px;color:#94a3b8;">✓ &nbsp;Accessibility-first (WCAG 2.1 / Section 508)</div>
+              <div style="font-size:13px;color:#94a3b8;">✓ &nbsp;Agile / Scrum Leadership</div>
+              <div style="font-size:13px;color:#94a3b8;">✓ &nbsp;Cross-functional Collaboration</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </section>
+  </div>
 
   <footer>
-    © 2025 Madhuri K · Built with GitHub Pages
+    © 2025 Madhuri K &nbsp;·&nbsp; Senior UX/UI Engineer &nbsp;·&nbsp; Built with GitHub Pages
   </footer>
+
+  <script>
+    function toggleExp(id) {
+      document.getElementById(id).classList.toggle('open');
+    }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
 
 </body>
 </html>
